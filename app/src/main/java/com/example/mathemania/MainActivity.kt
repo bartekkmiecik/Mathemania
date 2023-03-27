@@ -7,7 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
-import com.example.mathemania.Constants.getEquation
+import com.example.mathemania.Constants.getRandomEquation
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         buttonStart.setOnClickListener{
             if(inputName.text.isEmpty()){
                 Toast.makeText(this, "Please enter your name", Toast.LENGTH_SHORT).show()
-                println(getEquation())
+                println(getRandomEquation())
             } else {
                 startActivity(Intent(this, QuestionsActivity::class.java))
                 finish()
