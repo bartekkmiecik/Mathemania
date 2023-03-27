@@ -11,7 +11,7 @@
     android:padding="20dp">
 
     <ImageView
-        android:layout_width="385dp"
+        android:layout_width="match_parent"
         android:layout_height="300dp"
         android:src="@drawable/mathemania"
         android:layout_marginBottom="50dp"/>
@@ -56,7 +56,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Name"
                     android:inputType="textCapWords"
-                    android:textColor="#A0A0A0"/>
+                    android:textColor="@color/black"/>
             </com.google.android.material.textfield.TextInputLayout>
             <Button
                 android:id="@+id/buttonStart"
