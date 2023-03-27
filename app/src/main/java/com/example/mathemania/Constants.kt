@@ -7,8 +7,8 @@ object Constants {
         val randomOperation = Operation.values().random()
         val randomEquation: Equation?
 
-        if(randomOperation == Operation.divide){
-           randomEquation = Equation((0..20).random(), 2, Operation.divide)
+        if(randomOperation == Operation.DIVIDE){
+           randomEquation = Equation((0..20).random(), 2, Operation.DIVIDE)
         } else {
             randomEquation = Equation((0..20).random(), (0..20).random(), randomOperation)
         }
