@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
+import com.example.mathemania.Constants.getEquation
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,19 +15,21 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val btnStart : Button = findViewById(R.id.btnStart)
-        val btnScore : Button = findViewById(R.id.btnScore)
+        val buttonStart : Button = findViewById(R.id.buttonStart)
+        val buttonScore : Button = findViewById(R.id.buttonScore)
         val inputName : EditText = findViewById(R.id.inputName)
 
-        btnStart.setOnClickListener{
+        buttonStart.setOnClickListener{
             if(inputName.text.isEmpty()){
-                Toast.makeText(this, "Please enter your name", Toast.LENGTH_SHORT)
-            }else{
-                // TODO "Make Questions activity"
+                Toast.makeText(this, "Please enter your name", Toast.LENGTH_SHORT).show()
+                println(getEquation())
+            } else {
+                startActivity(Intent(this, QuestionsActivity::class.java))
+                finish()
             }
         }
 
-        btnScore.setOnClickListener{
+        buttonScore.setOnClickListener{
             // TODO "Make scoreboard activity"
         }
 

@@ -1,17 +1,15 @@
 package com.example.mathemania
 
-import kotlin.random.Random
 
 object Constants {
 
     fun getEquation(): Equation{
-        val operation = listOf("add", "subtract", "divide", "multiply")
-        val randomOperation = operation.random()
-        var randomEquation: Equation? = null
+        val randomOperation = Operations.values().random()
+        val randomEquation: Equation?
 
-        if(randomOperation == "divide"){
-           randomEquation = Equation((0..20).random(), 2, "divide")
-        }else {
+        if(randomOperation == Operations.divide){
+           randomEquation = Equation((0..20).random(), 2, Operations.divide)
+        } else {
             randomEquation = Equation((0..20).random(), (0..20).random(), randomOperation)
         }
         return randomEquation
