@@ -23,7 +23,6 @@ class QuestionsActivity : AppCompatActivity() {
     fun click(button: View){
         if(textAnswer?.text!!.contains("ANSWER")) {
             textAnswer?.text = ""
-            textAnswer?.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30.0F)
         }
 
         if((button as Button).text == "CLR") {
