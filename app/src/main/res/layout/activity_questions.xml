@@ -58,7 +58,7 @@
             android:layout_height="match_parent"
             android:textColor="#0F0F0F"
             android:textSize="30sp"
-            android:text="ANSWER"
+            android:text="@string/answer"
             android:gravity="center"/>
     </com.google.android.material.card.MaterialCardView>
 
@@ -79,7 +79,7 @@
             android:backgroundTint="#D9D9D9"
             android:layout_margin="3dp"
             android:textColor="#142E73"
-            android:onClick="click"/>
+            android:onClick="digitButtonTapped"/>
         <Button
             android:id="@+id/buttonTwo"
             android:layout_width="0dp"
@@ -89,7 +89,7 @@
             android:backgroundTint="#D9D9D9"
             android:layout_margin="3dp"
             android:textColor="#142E73"
-            android:onClick="click"/>
+            android:onClick="digitButtonTapped"/>
         <Button
             android:id="@+id/buttonThree"
             android:layout_width="0dp"
@@ -99,7 +99,7 @@
             android:backgroundTint="#D9D9D9"
             android:layout_margin="3dp"
             android:textColor="#142E73"
-            android:onClick="click"/>
+            android:onClick="digitButtonTapped"/>
         <Button
             android:id="@+id/buttonFour"
             android:layout_width="0dp"
@@ -109,7 +109,7 @@
             android:backgroundTint="#D9D9D9"
             android:layout_margin="3dp"
             android:textColor="#142E73"
-            android:onClick="click"/>
+            android:onClick="digitButtonTapped"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -128,7 +128,7 @@
             android:backgroundTint="#D9D9D9"
             android:layout_margin="3dp"
             android:textColor="#142E73"
-            android:onClick="click"/>
+            android:onClick="digitButtonTapped"/>
         <Button
             android:id="@+id/buttonSix"
             android:layout_width="0dp"
@@ -138,7 +138,7 @@
             android:backgroundTint="#D9D9D9"
             android:layout_margin="3dp"
             android:textColor="#142E73"
-            android:onClick="click"/>
+            android:onClick="digitButtonTapped"/>
         <Button
             android:id="@+id/buttonSeven"
             android:layout_width="0dp"
@@ -148,7 +148,7 @@
             android:backgroundTint="#D9D9D9"
             android:layout_margin="3dp"
             android:textColor="#142E73"
-            android:onClick="click"/>
+            android:onClick="digitButtonTapped"/>
         <Button
             android:id="@+id/buttonEight"
             android:layout_width="0dp"
@@ -158,7 +158,7 @@
             android:backgroundTint="#D9D9D9"
             android:layout_margin="3dp"
             android:textColor="#142E73"
-            android:onClick="click"/>
+            android:onClick="digitButtonTapped"/>
     </LinearLayout>
 
     <LinearLayout
@@ -178,7 +178,7 @@
             android:backgroundTint="#D9D9D9"
             android:layout_margin="3dp"
             android:textColor="#142E73"
-            android:onClick="click"/>
+            android:onClick="digitButtonTapped"/>
         <Button
             android:id="@+id/buttonComa"
             android:layout_width="0dp"
@@ -188,7 +188,7 @@
             android:backgroundTint="#D9D9D9"
             android:layout_margin="3dp"
             android:textColor="#142E73"
-            android:onClick="decimalPoint"/>
+            android:onClick="decimalPointButtonTapped"/>
     </LinearLayout>
 
     <LinearLayout
@@ -208,18 +208,18 @@
             android:backgroundTint="#D9D9D9"
             android:layout_margin="3dp"
             android:textColor="#142E73"
-            android:onClick="click"
+            android:onClick="digitButtonTapped"
             />
         <Button
             android:id="@+id/buttonClear"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="CLR"
+            android:text="@string/clr"
             android:backgroundTint="#D9D9D9"
             android:layout_margin="3dp"
             android:textColor="#142E73"
-            android:onClick="click"/>
+            android:onClick="digitButtonTapped"/>
     </LinearLayout>
 
 </LinearLayout>

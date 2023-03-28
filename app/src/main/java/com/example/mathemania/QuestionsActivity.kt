@@ -2,7 +2,6 @@ package com.example.mathemania
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.TypedValue
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -11,8 +10,8 @@ import androidx.appcompat.app.AppCompatDelegate
 class QuestionsActivity : AppCompatActivity() {
 
     private var textAnswer : TextView? = null
-    var lastNumeric = false
-    var lastDot = false
+    var islastNumeric = false
+    var islastDot = false
     override fun onCreate(savedInstanceState: Bundle?) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         super.onCreate(savedInstanceState)
@@ -20,26 +19,28 @@ class QuestionsActivity : AppCompatActivity() {
         textAnswer = findViewById(R.id.textAnswer)
     }
 
-    fun click(button: View){
-        if(textAnswer?.text!!.contains("ANSWER")) {
-            textAnswer?.text = ""
+    fun digitButtonTapped(button: View){
+        textAnswer?.let {
+            if(it.text.contains(getString(R.string.answer))) {
+                textAnswer?.text = ""
+            }
         }
 
-        if((button as Button).text == "CLR") {
-            textAnswer?.text = "ANSWER"
-            lastNumeric = false
-            lastDot = false
+        if((button as Button).text == getString(R.string.clr)) {
+            textAnswer?.text = getString(R.string.answer)
+            islastNumeric = false
+            islastDot = false
         } else {
             textAnswer?.append(button.text)
-            lastNumeric = true
+            islastNumeric = true
         }
     }
 
-    fun decimalPoint(button: View) {
-        if(lastNumeric && !lastDot){
+    fun decimalPointButtonTapped(button: View) {
+        if(islastNumeric && !islastDot){
             textAnswer?.append(".")
-            lastNumeric = false
-            lastDot = true
+            islastNumeric = false
+            islastDot = true
         }
     }
 }
