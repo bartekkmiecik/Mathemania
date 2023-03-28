@@ -10,8 +10,8 @@ import androidx.appcompat.app.AppCompatDelegate
 class QuestionsActivity : AppCompatActivity() {
 
     private var textAnswer : TextView? = null
-    var islastNumeric = false
-    var islastDot = false
+    var isLastNumeric = false
+    var isLastDot = false
     override fun onCreate(savedInstanceState: Bundle?) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         super.onCreate(savedInstanceState)
@@ -28,19 +28,19 @@ class QuestionsActivity : AppCompatActivity() {
 
         if((button as Button).text == getString(R.string.clr)) {
             textAnswer?.text = getString(R.string.answer)
-            islastNumeric = false
-            islastDot = false
+            isLastNumeric = false
+            isLastDot = false
         } else {
             textAnswer?.append(button.text)
-            islastNumeric = true
+            isLastNumeric = true
         }
     }
 
     fun decimalPointButtonTapped(button: View) {
-        if(islastNumeric && !islastDot){
+        if(isLastNumeric && !isLastDot){
             textAnswer?.append(".")
-            islastNumeric = false
-            islastDot = true
+            isLastNumeric = false
+            isLastDot = true
         }
     }
 }
