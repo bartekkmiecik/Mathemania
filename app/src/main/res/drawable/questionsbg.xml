@@ -3,7 +3,7 @@
     <item>
         <bitmap
 
-            android:gravity="bottom"
+            android:gravity="center_vertical"
             android:src="@drawable/questionsscreen"
             />
 
