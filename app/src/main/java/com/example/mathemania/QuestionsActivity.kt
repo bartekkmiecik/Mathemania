@@ -32,41 +32,51 @@ class QuestionsActivity : AppCompatActivity() {
 
         var correctAnswerString = correctAnswer.toString()
 
-        if(correctAnswerString.endsWith(".0")) correctAnswerString = correctAnswerString.substring(0, correctAnswerString.length - 2)
+        if (correctAnswerString.endsWith(".0")) {
+            correctAnswerString = correctAnswerString.substring(0, correctAnswerString.length - 2)
+        }
 
         textAnswer?.let {
-            if(it.text.contains(getString(R.string.answer))) {
+            if (it.text.contains(getString(R.string.answer))) {
                 textAnswer?.text = ""
             }
 
-            if((button as Button).text == getString(R.string.clr)) {
-                textAnswer?.text = getString(R.string.answer)
-                isLastNumeric = false
-                isLastDot = false
-                isOperatorAdded = false
-            } else {
-                textAnswer?.append(button.text)
-                isLastNumeric = true
-            }
+            appendButtonTapped(button)
 
-            if(it.text.toString() == correctAnswerString) {
-                setEquation()
-                textAnswer?.text = getString(R.string.answer)
-                isLastNumeric = false
-                isLastDot = false
-                isOperatorAdded = false
-                correctAnswerCount++
-                textAnswerCount?.text = "Correct answers: $correctAnswerCount"
-                println(correctAnswerCount)
-            }
+            checkCorrectAnswer(it, correctAnswerString)
         }
 
 
         println("${textAnswer?.text}, $correctAnswer")
     }
 
+    private fun appendButtonTapped(button: View) {
+        if ((button as Button).text == getString(R.string.clr)) {
+            textAnswer?.text = getString(R.string.answer)
+            isLastNumeric = false
+            isLastDot = false
+            isOperatorAdded = false
+        } else {
+            textAnswer?.append(button.text)
+            isLastNumeric = true
+        }
+    }
+
+    private fun checkCorrectAnswer(answerInput: TextView, correctAnswer : String) {
+        if (answerInput.text.toString() == correctAnswer) {
+            setEquation()
+            textAnswer?.text = getString(R.string.answer)
+            isLastNumeric = false
+            isLastDot = false
+            isOperatorAdded = false
+            correctAnswerCount++
+            textAnswerCount?.text = "Correct answers: $correctAnswerCount"
+            println(correctAnswerCount)
+        }
+    }
+
     fun decimalPointButtonTapped(button: View) {
-        if(isLastNumeric && !isLastDot){
+        if (isLastNumeric && !isLastDot) {
             textAnswer?.append(".")
             isLastNumeric = false
             isLastDot = true
@@ -75,12 +85,12 @@ class QuestionsActivity : AppCompatActivity() {
 
     fun minusButtonTapped(button: View) {
         textAnswer?.let {
-            if(it.text.contains(getString(R.string.answer))) {
+            if (it.text.contains(getString(R.string.answer))) {
                 textAnswer?.text = ""
             }
         }
 
-        if (!isOperatorAdded){
+        if (!isOperatorAdded) {
             textAnswer?.append("-")
             isOperatorAdded = true
         }
@@ -89,7 +99,7 @@ class QuestionsActivity : AppCompatActivity() {
      private fun setEquation() {
         val randomEquation = Constants.getRandomEquation()
 
-        when(randomEquation.operation) {
+        when (randomEquation.operation) {
             Operation.ADD -> {
                 textQuestion?.text = "${randomEquation.valueFirst} + ${randomEquation.valueSecond}"
 
