@@ -11,36 +11,58 @@ class QuestionsActivity : AppCompatActivity() {
 
     private var textAnswer : TextView? = null
     private var textQuestion : TextView? = null
+    private var textAnswerCount : TextView? = null
     private var isLastNumeric = false
     private var isLastDot = false
-    var isOperatorAdded = false
+    private var isOperatorAdded = false
+    private var correctAnswer : Double = 0.0
+    private var correctAnswerCount = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_questions)
+
         textAnswer = findViewById(R.id.textAnswer)
         textQuestion = findViewById(R.id.textQuestion)
+        textAnswerCount = findViewById(R.id.textAnswerCount)
         setEquation()
     }
 
     fun digitButtonTapped(button: View){
 
+        var correctAnswerString = correctAnswer.toString()
+
+        if(correctAnswerString.endsWith(".0")) correctAnswerString = correctAnswerString.substring(0, correctAnswerString.length - 2)
+
         textAnswer?.let {
             if(it.text.contains(getString(R.string.answer))) {
                 textAnswer?.text = ""
             }
+
+            if((button as Button).text == getString(R.string.clr)) {
+                textAnswer?.text = getString(R.string.answer)
+                isLastNumeric = false
+                isLastDot = false
+                isOperatorAdded = false
+            } else {
+                textAnswer?.append(button.text)
+                isLastNumeric = true
+            }
+
+            if(it.text.toString() == correctAnswerString) {
+                setEquation()
+                textAnswer?.text = getString(R.string.answer)
+                isLastNumeric = false
+                isLastDot = false
+                isOperatorAdded = false
+                correctAnswerCount++
+                textAnswerCount?.text = "Correct answers: $correctAnswerCount"
+                println(correctAnswerCount)
+            }
         }
 
-        if((button as Button).text == getString(R.string.clr)) {
-            textAnswer?.text = getString(R.string.answer)
-            isLastNumeric = false
-            isLastDot = false
-            isOperatorAdded = false
-        } else {
-            textAnswer?.append(button.text)
-            isLastNumeric = true
-        }
 
+        println("${textAnswer?.text}, $correctAnswer")
     }
 
     fun decimalPointButtonTapped(button: View) {
@@ -70,18 +92,27 @@ class QuestionsActivity : AppCompatActivity() {
         when(randomEquation.operation) {
             Operation.ADD -> {
                 textQuestion?.text = "${randomEquation.valueFirst} + ${randomEquation.valueSecond}"
+
+                correctAnswer = (randomEquation.valueFirst + randomEquation.valueSecond).toDouble()
+
             }
 
             Operation.SUBTRACT -> {
                 textQuestion?.text = "${randomEquation.valueFirst} - ${randomEquation.valueSecond}"
+
+                correctAnswer = (randomEquation.valueFirst - randomEquation.valueSecond).toDouble()
             }
 
             Operation.DIVIDE -> {
                 textQuestion?.text = "${randomEquation.valueFirst} / ${randomEquation.valueSecond}"
+
+                correctAnswer = randomEquation.valueFirst.toDouble() / randomEquation.valueSecond.toDouble()
             }
 
             Operation.MULTIPLY -> {
                 textQuestion?.text = "${randomEquation.valueFirst} x ${randomEquation.valueSecond}"
+
+                correctAnswer = (randomEquation.valueFirst * randomEquation.valueSecond).toDouble()
             }
         }
     }

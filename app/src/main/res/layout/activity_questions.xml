@@ -10,9 +10,10 @@
     android:background="@drawable/questionsbg">
 
     <TextView
+        android:id="@+id/textAnswerCount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="Answered questions: 5"
+        android:text="Answered questions: 0"
         android:textColor="#d9D9D9"
         android:textStyle="bold"
         android:gravity="center"
