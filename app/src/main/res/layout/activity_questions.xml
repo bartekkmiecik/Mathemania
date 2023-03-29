@@ -180,6 +180,28 @@
             android:textColor="#142E73"
             android:onClick="digitButtonTapped"/>
         <Button
+            android:id="@+id/buttonZero"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="0"
+            android:backgroundTint="#D9D9D9"
+            android:layout_margin="3dp"
+            android:textColor="#142E73"
+            android:onClick="digitButtonTapped"
+            />
+        <Button
+            android:id="@+id/buttonMinus"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/minus"
+            android:backgroundTint="#D9D9D9"
+            android:layout_margin="3dp"
+            android:textColor="#142E73"
+            android:onClick="minusButtonTapped"/>
+
+        <Button
             android:id="@+id/buttonComa"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -199,17 +221,6 @@
         android:background="#FF131D39"
         android:padding="2dp">
 
-        <Button
-            android:id="@+id/buttonZero"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="0"
-            android:backgroundTint="#D9D9D9"
-            android:layout_margin="3dp"
-            android:textColor="#142E73"
-            android:onClick="digitButtonTapped"
-            />
         <Button
             android:id="@+id/buttonClear"
             android:layout_width="0dp"

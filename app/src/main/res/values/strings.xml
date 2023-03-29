@@ -2,4 +2,5 @@
     <string name="app_name">Mathemania</string>
     <string name="answer">ANSWER</string>
     <string name="clr">CLR</string>
+    <string name="minus">-</string>
 </resources>

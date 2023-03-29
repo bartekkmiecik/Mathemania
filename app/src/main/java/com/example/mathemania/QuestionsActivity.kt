@@ -11,19 +11,20 @@ class QuestionsActivity : AppCompatActivity() {
 
     private var textAnswer : TextView? = null
     private var textQuestion : TextView? = null
-    var isLastNumeric = false
-    var isLastDot = false
+    private var isLastNumeric = false
+    private var isLastDot = false
+    var isOperatorAdded = false
     override fun onCreate(savedInstanceState: Bundle?) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_questions)
         textAnswer = findViewById(R.id.textAnswer)
         textQuestion = findViewById(R.id.textQuestion)
-
         setEquation()
     }
 
     fun digitButtonTapped(button: View){
+
         textAnswer?.let {
             if(it.text.contains(getString(R.string.answer))) {
                 textAnswer?.text = ""
@@ -34,10 +35,12 @@ class QuestionsActivity : AppCompatActivity() {
             textAnswer?.text = getString(R.string.answer)
             isLastNumeric = false
             isLastDot = false
+            isOperatorAdded = false
         } else {
             textAnswer?.append(button.text)
             isLastNumeric = true
         }
+
     }
 
     fun decimalPointButtonTapped(button: View) {
@@ -48,7 +51,20 @@ class QuestionsActivity : AppCompatActivity() {
         }
     }
 
-    fun setEquation() {
+    fun minusButtonTapped(button: View) {
+        textAnswer?.let {
+            if(it.text.contains(getString(R.string.answer))) {
+                textAnswer?.text = ""
+            }
+        }
+
+        if (!isOperatorAdded){
+            textAnswer?.append("-")
+            isOperatorAdded = true
+        }
+    }
+
+     private fun setEquation() {
         val randomEquation = Constants.getRandomEquation()
 
         when(randomEquation.operation) {
