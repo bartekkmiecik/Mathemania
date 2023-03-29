@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatDelegate
 class QuestionsActivity : AppCompatActivity() {
 
     private var textAnswer : TextView? = null
+    private var textQuestion : TextView? = null
     var isLastNumeric = false
     var isLastDot = false
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,6 +18,9 @@ class QuestionsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_questions)
         textAnswer = findViewById(R.id.textAnswer)
+        textQuestion = findViewById(R.id.textQuestion)
+
+        setEquation()
     }
 
     fun digitButtonTapped(button: View){
@@ -41,6 +45,28 @@ class QuestionsActivity : AppCompatActivity() {
             textAnswer?.append(".")
             isLastNumeric = false
             isLastDot = true
+        }
+    }
+
+    fun setEquation() {
+        val randomEquation = Constants.getRandomEquation()
+
+        when(randomEquation.operation) {
+            Operation.ADD -> {
+                textQuestion?.text = "${randomEquation.valueFirst} + ${randomEquation.valueSecond}"
+            }
+
+            Operation.SUBTRACT -> {
+                textQuestion?.text = "${randomEquation.valueFirst} - ${randomEquation.valueSecond}"
+            }
+
+            Operation.DIVIDE -> {
+                textQuestion?.text = "${randomEquation.valueFirst} / ${randomEquation.valueSecond}"
+            }
+
+            Operation.MULTIPLY -> {
+                textQuestion?.text = "${randomEquation.valueFirst} x ${randomEquation.valueSecond}"
+            }
         }
     }
 }
