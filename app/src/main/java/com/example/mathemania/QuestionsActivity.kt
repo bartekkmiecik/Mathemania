@@ -32,9 +32,10 @@ class QuestionsActivity : AppCompatActivity() {
 
         setEquation()
 
-        countDownTimer = object : CountDownTimer(5000, 1) {
+        countDownTimer = object : CountDownTimer(5000, 5) {
             override fun onTick(remainingTime: Long) {
-                textTimer?.text = remainingTime.toString()
+                val remainingTimeInSeconds : String = remainingTime.toString().substring(0, remainingTime.toString().length-2)
+                textTimer?.text = remainingTimeInSeconds
             }
 
             override fun onFinish() {
