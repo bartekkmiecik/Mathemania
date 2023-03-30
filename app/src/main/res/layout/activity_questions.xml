@@ -10,10 +10,9 @@
     android:background="@drawable/questionsbg">
 
     <TextView
-        android:id="@+id/textAnswerCount"
+        android:id="@+id/textTimer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Answered questions: 0"
         android:textColor="#d9D9D9"
         android:textStyle="bold"
         android:gravity="center"
@@ -42,8 +41,19 @@
             tools:text="4 x 4" />
 
     </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/textAnswerCount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Answered questions: 0"
+        android:textColor="#d9D9D9"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"/>
     <com.google.android.material.card.MaterialCardView
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginStart="40dp"

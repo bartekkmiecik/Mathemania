@@ -2,6 +2,7 @@ package com.example.mathemania
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -12,11 +13,13 @@ class QuestionsActivity : AppCompatActivity() {
     private var textAnswer : TextView? = null
     private var textQuestion : TextView? = null
     private var textAnswerCount : TextView? = null
+    private var textTimer : TextView? = null
     private var isLastNumeric = false
     private var isLastDot = false
     private var isOperatorAdded = false
     private var correctAnswer : Double = 0.0
     private var correctAnswerCount = 0
+    private lateinit var countDownTimer : CountDownTimer
     override fun onCreate(savedInstanceState: Bundle?) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         super.onCreate(savedInstanceState)
@@ -25,7 +28,21 @@ class QuestionsActivity : AppCompatActivity() {
         textAnswer = findViewById(R.id.textAnswer)
         textQuestion = findViewById(R.id.textQuestion)
         textAnswerCount = findViewById(R.id.textAnswerCount)
+        textTimer = findViewById(R.id.textTimer)
+
         setEquation()
+
+        countDownTimer = object : CountDownTimer(5000, 1) {
+            override fun onTick(remainingTime: Long) {
+                textTimer?.text = remainingTime.toString()
+            }
+
+            override fun onFinish() {
+                TODO("Add intent to finish screen")
+            }
+        }
+
+        countDownTimer.start()
     }
 
     fun digitButtonTapped(button: View){
@@ -72,6 +89,7 @@ class QuestionsActivity : AppCompatActivity() {
             correctAnswerCount++
             textAnswerCount?.text = "Correct answers: $correctAnswerCount"
             println(correctAnswerCount)
+            countDownTimer.start()
         }
     }
 
@@ -126,4 +144,5 @@ class QuestionsActivity : AppCompatActivity() {
             }
         }
     }
+
 }

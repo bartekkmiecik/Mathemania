@@ -1,13 +1,14 @@
 package com.example.mathemania
 
 
+
 object Constants {
 
     fun getRandomEquation(): Equation{
         val randomOperation = Operation.values().random()
         val randomEquation: Equation?
 
-        when(randomOperation) {
+        when (randomOperation) {
 
             Operation.DIVIDE -> randomEquation = Equation((0..20).random(), 2, Operation.DIVIDE)
 
@@ -19,5 +20,4 @@ object Constants {
 
         return randomEquation
     }
-
 }
