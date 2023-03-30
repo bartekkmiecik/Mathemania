@@ -1,5 +1,6 @@
 package com.example.mathemania
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -29,17 +30,17 @@ class QuestionsActivity : AppCompatActivity() {
         textQuestion = findViewById(R.id.textQuestion)
         textAnswerCount = findViewById(R.id.textAnswerCount)
         textTimer = findViewById(R.id.textTimer)
+        val changeViewsToFinishActivity = Intent(this, FinishActivity::class.java)
 
         setEquation()
 
         countDownTimer = object : CountDownTimer(5000, 5) {
             override fun onTick(remainingTime: Long) {
-                val remainingTimeInSeconds : String = remainingTime.toString().substring(0, remainingTime.toString().length-2)
-                textTimer?.text = remainingTimeInSeconds
+                textTimer?.text = remainingTime.toString()
             }
 
             override fun onFinish() {
-                TODO("Add intent to finish screen")
+                startActivity(changeViewsToFinishActivity)
             }
         }
 
