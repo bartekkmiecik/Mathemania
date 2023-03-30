@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         val buttonScore: Button = findViewById(R.id.buttonScore)
         val inputName: EditText = findViewById(R.id.inputName)
 
-        buttonStart.setOnClickListener{
+        buttonStart.setOnClickListener {
             if(inputName.text.isEmpty()) {
                 Toast.makeText(this, "Please enter your name", Toast.LENGTH_SHORT).show()
                 println(getRandomEquation())
