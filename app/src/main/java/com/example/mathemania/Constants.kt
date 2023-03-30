@@ -4,7 +4,7 @@ package com.example.mathemania
 
 object Constants {
 
-    const val USER_NAME : String = "user_name"
+    const val USER_NAME: String = "user_name"
     const val CORRECT_ANSWERS: String = "correct_answers"
     fun getRandomEquation(): Equation{
         val randomOperation = Operation.values().random()

@@ -15,9 +15,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val buttonStart : Button = findViewById(R.id.buttonStart)
-        val buttonScore : Button = findViewById(R.id.buttonScore)
-        val inputName : EditText = findViewById(R.id.inputName)
+        val buttonStart: Button = findViewById(R.id.buttonStart)
+        val buttonScore: Button = findViewById(R.id.buttonScore)
+        val inputName: EditText = findViewById(R.id.inputName)
 
         buttonStart.setOnClickListener{
             if(inputName.text.isEmpty()) {

@@ -11,16 +11,16 @@ import androidx.appcompat.app.AppCompatDelegate
 
 class QuestionsActivity : AppCompatActivity() {
 
-    private var textAnswer : TextView? = null
-    private var textQuestion : TextView? = null
-    private var textAnswerCount : TextView? = null
-    private var textTimer : TextView? = null
+    private var textAnswer: TextView? = null
+    private var textQuestion: TextView? = null
+    private var textAnswerCount: TextView? = null
+    private var textTimer: TextView? = null
     private var isLastNumeric = false
     private var isLastDot = false
     private var isOperatorAdded = false
-    private var correctAnswer : Double = 0.0
+    private var correctAnswer: Double = 0.0
     private var correctAnswerCount = 0
-    private var username : String? = null
+    private var username: String? = null
     private lateinit var countDownTimer : CountDownTimer
     override fun onCreate(savedInstanceState: Bundle?) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
@@ -36,7 +36,14 @@ class QuestionsActivity : AppCompatActivity() {
 
         setEquation()
 
-        countDownTimer = object : CountDownTimer(5000, 5) {
+        setCountDownTimer(intent)
+
+        countDownTimer.start()
+
+    }
+
+    private fun setCountDownTimer(intent: Intent) {
+        countDownTimer = object: CountDownTimer(5000, 5) {
             override fun onTick(remainingTime: Long) {
                 textTimer?.text = remainingTime.toString()
             }
@@ -48,7 +55,6 @@ class QuestionsActivity : AppCompatActivity() {
                 finish()
             }
         }
-
         countDownTimer.start()
     }
 
