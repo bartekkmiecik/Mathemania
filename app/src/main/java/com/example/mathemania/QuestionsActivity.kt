@@ -49,7 +49,7 @@ class QuestionsActivity : AppCompatActivity() {
             }
         }
 
-        //countDownTimer.start()
+        countDownTimer.start()
     }
 
     fun digitButtonTapped(button: View){
