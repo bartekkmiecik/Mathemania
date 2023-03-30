@@ -24,7 +24,9 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Please enter your name", Toast.LENGTH_SHORT).show()
                 println(getRandomEquation())
             } else {
-                startActivity(Intent(this, QuestionsActivity::class.java))
+                val intent = Intent(this, QuestionsActivity::class.java)
+                intent.putExtra(Constants.USER_NAME, inputName.text.toString())
+                startActivity(intent)
                 finish()
             }
         }

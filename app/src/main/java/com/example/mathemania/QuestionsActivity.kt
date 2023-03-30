@@ -20,17 +20,19 @@ class QuestionsActivity : AppCompatActivity() {
     private var isOperatorAdded = false
     private var correctAnswer : Double = 0.0
     private var correctAnswerCount = 0
+    private var username : String? = null
     private lateinit var countDownTimer : CountDownTimer
     override fun onCreate(savedInstanceState: Bundle?) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_questions)
 
+        username = intent.getStringExtra(Constants.USER_NAME)
         textAnswer = findViewById(R.id.textAnswer)
         textQuestion = findViewById(R.id.textQuestion)
         textAnswerCount = findViewById(R.id.textAnswerCount)
         textTimer = findViewById(R.id.textTimer)
-        val changeViewsToFinishActivity = Intent(this, FinishActivity::class.java)
+        val intent = Intent(this, FinishActivity::class.java)
 
         setEquation()
 
@@ -40,11 +42,14 @@ class QuestionsActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                startActivity(changeViewsToFinishActivity)
+                intent.putExtra(Constants.USER_NAME, username)
+                intent.putExtra(Constants.CORRECT_ANSWERS, correctAnswerCount)
+                startActivity(intent)
+                finish()
             }
         }
 
-        countDownTimer.start()
+        //countDownTimer.start()
     }
 
     fun digitButtonTapped(button: View){
@@ -110,7 +115,7 @@ class QuestionsActivity : AppCompatActivity() {
             }
         }
 
-        if (!isOperatorAdded) {
+        if (!isOperatorAdded and !isLastNumeric) {
             textAnswer?.append("-")
             isOperatorAdded = true
         }

@@ -15,6 +15,7 @@
         android:id="@+id/imageTrophy"
         android:layout_width="300dp"
         android:layout_height="300dp"
+        android:layout_marginTop="50dp"
         android:contentDescription="image" />
 
     <com.google.android.material.card.MaterialCardView
