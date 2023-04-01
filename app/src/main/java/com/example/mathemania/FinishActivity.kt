@@ -7,11 +7,12 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 
+
+
+
 class FinishActivity : AppCompatActivity() {
 
     private var imageTrophy: ImageView? = null
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,6 +21,7 @@ class FinishActivity : AppCompatActivity() {
         val textScore: TextView = findViewById(R.id.textScore)
         val buttonFinish: Button = findViewById(R.id.buttonFinish)
         val correctAnswers = intent.getIntExtra(Constants.CORRECT_ANSWERS, 0)
+
 
         imageTrophy = findViewById(R.id.imageTrophy)
 
@@ -31,6 +33,7 @@ class FinishActivity : AppCompatActivity() {
         buttonFinish.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
         }
+
     }
 
     private fun displayTrophyImage(score : Int) {
