@@ -15,16 +15,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val buttonStart : Button = findViewById(R.id.buttonStart)
-        val buttonScore : Button = findViewById(R.id.buttonScore)
-        val inputName : EditText = findViewById(R.id.inputName)
+        val buttonStart: Button = findViewById(R.id.buttonStart)
+        val buttonScore: Button = findViewById(R.id.buttonScore)
+        val inputName: EditText = findViewById(R.id.inputName)
 
-        buttonStart.setOnClickListener{
+        buttonStart.setOnClickListener {
             if(inputName.text.isEmpty()) {
                 Toast.makeText(this, "Please enter your name", Toast.LENGTH_SHORT).show()
                 println(getRandomEquation())
             } else {
-                startActivity(Intent(this, QuestionsActivity::class.java))
+                val intent = Intent(this, QuestionsActivity::class.java)
+                intent.putExtra(Constants.USER_NAME, inputName.text.toString())
+                startActivity(intent)
                 finish()
             }
         }

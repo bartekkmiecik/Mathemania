@@ -1,7 +1,9 @@
 package com.example.mathemania
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -9,23 +11,51 @@ import androidx.appcompat.app.AppCompatDelegate
 
 class QuestionsActivity : AppCompatActivity() {
 
-    private var textAnswer : TextView? = null
-    private var textQuestion : TextView? = null
-    private var textAnswerCount : TextView? = null
+    private var textAnswer: TextView? = null
+    private var textQuestion: TextView? = null
+    private var textAnswerCount: TextView? = null
+    private var textTimer: TextView? = null
     private var isLastNumeric = false
     private var isLastDot = false
     private var isOperatorAdded = false
-    private var correctAnswer : Double = 0.0
+    private var correctAnswer: Double = 0.0
     private var correctAnswerCount = 0
+    private var username: String? = null
+    private lateinit var countDownTimer : CountDownTimer
     override fun onCreate(savedInstanceState: Bundle?) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_questions)
 
+        username = intent.getStringExtra(Constants.USER_NAME)
         textAnswer = findViewById(R.id.textAnswer)
         textQuestion = findViewById(R.id.textQuestion)
         textAnswerCount = findViewById(R.id.textAnswerCount)
+        textTimer = findViewById(R.id.textTimer)
+        val intent = Intent(this, FinishActivity::class.java)
+
         setEquation()
+
+        setCountDownTimer(intent)
+
+        countDownTimer.start()
+
+    }
+
+    private fun setCountDownTimer(intent: Intent) {
+        countDownTimer = object: CountDownTimer(5000, 5) {
+            override fun onTick(remainingTime: Long) {
+                textTimer?.text = remainingTime.toString()
+            }
+
+            override fun onFinish() {
+                intent.putExtra(Constants.USER_NAME, username)
+                intent.putExtra(Constants.CORRECT_ANSWERS, correctAnswerCount)
+                startActivity(intent)
+                finish()
+            }
+        }
+        countDownTimer.start()
     }
 
     fun digitButtonTapped(button: View){
@@ -72,6 +102,7 @@ class QuestionsActivity : AppCompatActivity() {
             correctAnswerCount++
             textAnswerCount?.text = "Correct answers: $correctAnswerCount"
             println(correctAnswerCount)
+            countDownTimer.start()
         }
     }
 
@@ -90,7 +121,7 @@ class QuestionsActivity : AppCompatActivity() {
             }
         }
 
-        if (!isOperatorAdded) {
+        if (!isOperatorAdded and !isLastNumeric) {
             textAnswer?.append("-")
             isOperatorAdded = true
         }
@@ -126,4 +157,5 @@ class QuestionsActivity : AppCompatActivity() {
             }
         }
     }
+
 }
