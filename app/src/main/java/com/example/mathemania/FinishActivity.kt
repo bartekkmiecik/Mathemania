@@ -1,12 +1,12 @@
 package com.example.mathemania
 
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-
+import androidx.appcompat.app.AppCompatActivity
 
 
 
@@ -21,17 +21,21 @@ class FinishActivity : AppCompatActivity() {
         val textScore: TextView = findViewById(R.id.textScore)
         val buttonFinish: Button = findViewById(R.id.buttonFinish)
         val correctAnswers = intent.getIntExtra(Constants.CORRECT_ANSWERS, 0)
-
+        val playerUsername = intent.getStringExtra(Constants.USER_NAME).toString()
+        var userScore = BestScore(playerUsername, correctAnswers)
+        Constants.isProgressReadyToSave = true
 
         imageTrophy = findViewById(R.id.imageTrophy)
 
         displayTrophyImage(correctAnswers)
         checkPointsPlural(correctAnswers, textScore)
-        textUsername.text = intent.getStringExtra(Constants.USER_NAME)
+        textUsername.text = playerUsername
 
 
         buttonFinish.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra(Constants.BEST_SCORE, userScore)
+            startActivity(intent)
         }
 
     }
