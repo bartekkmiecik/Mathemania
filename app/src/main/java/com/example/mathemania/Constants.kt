@@ -7,8 +7,7 @@ object Constants {
     const val USER_NAME: String = "user_name"
     const val CORRECT_ANSWERS: String = "correct_answers"
     const val BEST_SCORE: String = "best_score"
-    var isProgressReadyToSave = false
-
+    const val IS_READY_TO_SAVE: String = "is_ready_to_save"
     fun getRandomEquation(): Equation{
         val randomOperation = Operation.values().random()
         val randomEquation: Equation?
