@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 class FinishActivity : AppCompatActivity() {
 
     private var imageTrophy: ImageView? = null
+    private var trophy: TrophyEnum = TrophyEnum.NONE
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +23,7 @@ class FinishActivity : AppCompatActivity() {
         val buttonFinish: Button = findViewById(R.id.buttonFinish)
         val correctAnswers = intent.getIntExtra(Constants.CORRECT_ANSWERS, 0)
         val playerUsername = intent.getStringExtra(Constants.USER_NAME).toString()
-        var userScore = BestScore(playerUsername, correctAnswers)
+        var userScore = BestScore(playerUsername, correctAnswers, trophy)
         val isProgressReadyToSave = true
 
         imageTrophy = findViewById(R.id.imageTrophy)
@@ -44,13 +45,25 @@ class FinishActivity : AppCompatActivity() {
 
     private fun displayTrophyImage(score : Int) {
         when {
-            score >= 100 -> imageTrophy?.setImageResource(R.drawable.trophydiamond)
+            score >= 100 -> {
+                imageTrophy?.setImageResource(R.drawable.trophydiamond)
+                trophy = TrophyEnum.DIAMOND
+            }
 
-            score >= 50 -> imageTrophy?.setImageResource(R.drawable.trophygold)
+            score >= 50 -> {
+                imageTrophy?.setImageResource(R.drawable.trophygold)
+                trophy = TrophyEnum.GOLD
+            }
 
-            score >= 25 -> imageTrophy?.setImageResource(R.drawable.trophysilver)
+            score >= 25 -> {
+                imageTrophy?.setImageResource(R.drawable.trophysilver)
+                trophy = TrophyEnum.SILVER
+            }
 
-            score >= 10 -> imageTrophy?.setImageResource(R.drawable.trophybronze)
+            score >= 10 -> {
+                imageTrophy?.setImageResource(R.drawable.trophybronze)
+                trophy = TrophyEnum.BRONZE
+            }
         }
     }
 

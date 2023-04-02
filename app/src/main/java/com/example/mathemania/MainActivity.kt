@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.mathemania.Constants.getRandomEquation
+import com.google.android.material.color.utilities.Score
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -24,13 +25,12 @@ class MainActivity : AppCompatActivity() {
         val buttonScore: Button = findViewById(R.id.buttonScore)
         val inputName: EditText = findViewById(R.id.inputName)
         val isProgressReadyToSave = intent.getBooleanExtra(Constants.IS_READY_TO_SAVE, false)
+
         loadData()
-        
+
         if (isProgressReadyToSave){
             addBestScoresToList(intent.getSerializableExtra(Constants.BEST_SCORE) as BestScore)
             saveData()
-            Toast.makeText(this, "Saved Array List to Shared preferences. ", Toast.LENGTH_SHORT)
-                .show()
         }
 
         buttonStart.setOnClickListener {
@@ -46,7 +46,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         buttonScore.setOnClickListener{
-            println(listBestScore)
+            val intent = Intent(this, ScoreActivity::class.java)
+            intent.putExtra(Constants.BEST_SCORE, listBestScore)
+            startActivity(intent)
         }
 
     }
@@ -68,9 +70,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun addBestScoresToList(bestScore: BestScore) {
-        if (listBestScore.size >= 4){
-            if (bestScore.score > listBestScore[4].score) {
-                listBestScore.removeAt(4)
+        if (listBestScore.size > 4){
+            if (bestScore.score > listBestScore[0].score) {
+                listBestScore.removeAt(0)
                 listBestScore.add(bestScore)
                 listBestScore.sortBy { it.score }
             }

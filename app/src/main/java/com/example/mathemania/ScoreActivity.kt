@@ -10,6 +10,7 @@ class ScoreActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_score)
-
+        val leaderboardList = intent.getSerializableExtra(Constants.BEST_SCORE)
+        println(leaderboardList)
     }
 }
