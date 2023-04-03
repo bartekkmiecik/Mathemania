@@ -25,24 +25,11 @@ class ScoreActivity : AppCompatActivity() {
         scoreRecycler?.layoutManager = linearLayoutManager
 
 
-        scoreList.sortByDescending{it.score}
+        scoreList.sortByDescending{ it.score }
 
         scoreListAdapter = RecyclerAdapter(scoreList)
         scoreRecycler?.adapter = scoreListAdapter
-        for (i in scoreList) {
-            when (i.trophy) {
 
-                TrophyEnum.BRONZE -> i.trophySource = R.drawable.trophybronze
-
-                TrophyEnum.SILVER -> i.trophySource = R.drawable.trophysilver
-
-                TrophyEnum.GOLD -> i.trophySource = R.drawable.trophygold
-
-                TrophyEnum.DIAMOND -> i.trophySource = R.drawable.trophydiamond
-
-                else -> i.trophySource = 0
-            }
-        }
     }
 
 }

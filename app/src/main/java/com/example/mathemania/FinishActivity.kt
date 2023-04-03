@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 class FinishActivity : AppCompatActivity() {
 
     private var imageTrophy: ImageView? = null
-    private var trophy: TrophyEnum = TrophyEnum.NONE
+    private var trophy: TrophyType = TrophyType.NONE
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +31,7 @@ class FinishActivity : AppCompatActivity() {
         checkPointsPlural(correctAnswers, textScore)
         textUsername.text = playerUsername
 
-        var userScore = BestScore(playerUsername, correctAnswers, trophy, 0)
+        var userScore = BestScore(playerUsername, correctAnswers, trophy)
 
 
         buttonFinish.setOnClickListener {
@@ -48,22 +48,22 @@ class FinishActivity : AppCompatActivity() {
         when {
             score >= 100 -> {
                 imageTrophy?.setImageResource(R.drawable.trophydiamond)
-                trophy = TrophyEnum.DIAMOND
+                trophy = TrophyType.DIAMOND
             }
 
             score >= 50 -> {
                 imageTrophy?.setImageResource(R.drawable.trophygold)
-                trophy = TrophyEnum.GOLD
+                trophy = TrophyType.GOLD
             }
 
             score >= 25 -> {
                 imageTrophy?.setImageResource(R.drawable.trophysilver)
-                trophy = TrophyEnum.SILVER
+                trophy = TrophyType.SILVER
             }
 
             score >= 10 -> {
                 imageTrophy?.setImageResource(R.drawable.trophybronze)
-                trophy = TrophyEnum.BRONZE
+                trophy = TrophyType.BRONZE
             }
         }
     }

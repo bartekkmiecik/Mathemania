@@ -22,7 +22,7 @@ import androidx.recyclerview.widget.RecyclerView
         override fun onBindViewHolder(holder: CourseViewHolder, position: Int) {
             holder.textUsername.text = scoreList[position].username
             holder.textPoints.text = scoreList[position].score.toString()
-            holder.imageTrophy.setImageResource(scoreList[position].trophySource)
+            holder.imageTrophy.setImageResource(scoreList[position].trophy.imageSource)
         }
 
         override fun getItemCount(): Int {

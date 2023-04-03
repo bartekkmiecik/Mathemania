@@ -4,5 +4,4 @@ data class BestScore(
     val username: String,
     val score: Int,
     val trophy: TrophyEnum,
-    var trophySource: Int
 ): java.io.Serializable

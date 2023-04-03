@@ -13,7 +13,7 @@ import java.lang.reflect.Type
 
 
 class MainActivity : AppCompatActivity() {
-    private var listBestScore = ArrayList<BestScore>()
+    private var bestScores = ArrayList<BestScore>()
     override fun onCreate(savedInstanceState: Bundle?) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         super.onCreate(savedInstanceState)
@@ -25,8 +25,8 @@ class MainActivity : AppCompatActivity() {
 
         loadData()
 
-        if (isProgressReadyToSave){
-            addBestScoresToList(intent.getSerializableExtra(Constants.BEST_SCORE) as BestScore)
+        if (isProgressReadyToSave) {
+            addBestScoreToList(intent.getSerializableExtra(Constants.BEST_SCORE) as BestScore)
             saveData()
         }
 
@@ -34,25 +34,34 @@ class MainActivity : AppCompatActivity() {
             if(inputName.text.isEmpty()) {
                 Toast.makeText(this, "Please enter your name", Toast.LENGTH_SHORT).show()
             } else {
-                val intent = Intent(this, QuestionsActivity::class.java)
-                intent.putExtra(Constants.USER_NAME, inputName.text.toString())
-                startActivity(intent)
-                finish()
+                goToQuestionsActivity(inputName)
             }
         }
 
         buttonScore.setOnClickListener{
-            val intent = Intent(this, ScoreActivity::class.java)
-            intent.putExtra(Constants.BEST_SCORE, listBestScore)
-            startActivity(intent)
+            goToScoreActivity()
         }
 
     }
+
+    private fun goToScoreActivity() {
+        val intent = Intent(this, ScoreActivity::class.java)
+        intent.putExtra(Constants.BEST_SCORE, bestScores)
+        startActivity(intent)
+    }
+
+    private fun goToQuestionsActivity(inputName: EditText) {
+        val intent = Intent(this, QuestionsActivity::class.java)
+        intent.putExtra(Constants.USER_NAME, inputName.text.toString())
+        startActivity(intent)
+        finish()
+    }
+
     private fun saveData() {
         val sharedPreferences = getSharedPreferences("best score", MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         val gson = Gson()
-        val json: String = gson.toJson(listBestScore)
+        val json: String = gson.toJson(bestScores)
         editor.putString("courses", json)
         editor.apply()
     }
@@ -63,19 +72,18 @@ class MainActivity : AppCompatActivity() {
         val json = sharedPreferences.getString("courses", null)
         if (json != null) {
             val type: Type = object : TypeToken<ArrayList<BestScore?>?>() {}.type
-            listBestScore = gson.fromJson<Any>(json, type) as ArrayList<BestScore>
+            bestScores = gson.fromJson<Any>(json, type) as ArrayList<BestScore>
         }
     }
 
-    private fun addBestScoresToList(bestScore: BestScore) {
-        if (listBestScore.size > 4){
-            if (bestScore.score > listBestScore[0].score) {
-                listBestScore.removeAt(0)
-                listBestScore.add(bestScore)
+    private fun addBestScoreToList(bestScore: BestScore) {
+        if (bestScores.size > 4){
+            if (bestScore.score > bestScores[4].score) {
+                bestScores.removeAt(4)
+                bestScores.add(bestScore)
             }
         } else {
-            listBestScore.add(bestScore)
-            listBestScore.sortBy { it.score }
+            bestScores.add(bestScore)
         }
     }
 }
