@@ -23,7 +23,6 @@ class FinishActivity : AppCompatActivity() {
         val buttonFinish: Button = findViewById(R.id.buttonFinish)
         val correctAnswers = intent.getIntExtra(Constants.CORRECT_ANSWERS, 0)
         val playerUsername = intent.getStringExtra(Constants.USER_NAME).toString()
-        var userScore = BestScore(playerUsername, correctAnswers, trophy)
         val isProgressReadyToSave = true
 
         imageTrophy = findViewById(R.id.imageTrophy)
@@ -31,6 +30,8 @@ class FinishActivity : AppCompatActivity() {
         displayTrophyImage(correctAnswers)
         checkPointsPlural(correctAnswers, textScore)
         textUsername.text = playerUsername
+
+        var userScore = BestScore(playerUsername, correctAnswers, trophy, 0)
 
 
         buttonFinish.setOnClickListener {

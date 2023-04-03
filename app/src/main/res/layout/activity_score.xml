@@ -12,171 +12,28 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="600dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:backgroundTint="#D9D9D9"
         app:cardCornerRadius="30dp">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="BEST SCORES"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            android:gravity="center"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp"
-            android:padding="10dp">
             <TextView
-                android:id="@+id/firstPlaceUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                tools:text="Kacper"
-                android:textSize="25sp"
-                android:textStyle="bold"/>
-            <TextView
-                android:id="@+id/firstPlacePoints"
+                android:text="SCOREBOARD"
+                android:textStyle="bold"
+                android:textSize="30sp"
+                android:gravity="center"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/bestScoreList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                tools:text="52 points"
-                android:textSize="25sp"
-                android:textStyle="bold"/>
-            <ImageView
-                android:id="@+id/firstPlaceTrophy"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                tools:src="@drawable/trophygold"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp"
-            android:padding="10dp">
-            <TextView
-                android:id="@+id/secondPlaceUsername"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                tools:text="Paulina"
-                android:textSize="25sp"
-                android:textStyle="bold"/>
-            <TextView
-                android:id="@+id/secondPlacePoints"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                tools:text="41 points"
-                android:textSize="25sp"
-                android:textStyle="bold"/>
-            <ImageView
-                android:id="@+id/secondPlaceTrophy"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                tools:src="@drawable/trophysilver"/>
-        </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp"
-                android:padding="10dp">
-                <TextView
-                    android:id="@+id/thirdPlaceUsername"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    tools:text="Bartek"
-                    android:textSize="25sp"
-                    android:textStyle="bold"/>
-                <TextView
-                    android:id="@+id/thirdPlacePoints"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    tools:text="12 points"
-                    android:textSize="25sp"
-                    android:textStyle="bold"/>
-                <ImageView
-                    android:id="@+id/thirdPlaceTrophy"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    tools:src="@drawable/trophybronze"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp"
-                android:padding="10dp">
-                <TextView
-                    android:id="@+id/fourthPlaceUsername"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    tools:text="Michał"
-                    android:textSize="25sp"
-                    android:textStyle="bold"/>
-                <TextView
-                    android:id="@+id/fourthPlacePoints"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    tools:text="11 points"
-                    android:textSize="25sp"
-                    android:textStyle="bold"/>
-                <ImageView
-                    android:id="@+id/fourthPlaceImage"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    tools:src="@drawable/trophybronze"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp"
-                android:padding="10dp">
-                <TextView
-                    android:id="@+id/fifthPlaceUsername"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    tools:text="Szymon"
-                    android:textSize="25sp"
-                    android:textStyle="bold"/>
-                <TextView
-                    android:id="@+id/fifthPlacePoints"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    tools:text="8 points"
-                    android:textSize="25sp"
-                    android:textStyle="bold"/>
-                <ImageView
-                    android:id="@+id/fifthPlaceTrophy"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_weight="1" />
-            </LinearLayout>
+                android:layout_margin="5dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
-
-
-
-
 </LinearLayout>

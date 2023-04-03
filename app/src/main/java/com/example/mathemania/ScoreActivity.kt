@@ -7,10 +7,42 @@ import androidx.recyclerview.widget.RecyclerView
 
 class ScoreActivity : AppCompatActivity() {
 
+    private lateinit var scoreListAdapter: RecyclerAdapter
+    private var scoreRecycler: RecyclerView? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_score)
-        val leaderboardList = intent.getSerializableExtra(Constants.BEST_SCORE)
-        println(leaderboardList)
+        val scoreList = intent.getSerializableExtra(Constants.BEST_SCORE) as ArrayList<BestScore>
+        scoreRecycler = findViewById(R.id.bestScoreList)
+
+        val linearLayoutManager = object : LinearLayoutManager(this) {
+            override fun canScrollVertically(): Boolean {
+                return false
+            }
+        }
+
+        scoreRecycler?.layoutManager = linearLayoutManager
+
+
+        scoreList.sortByDescending{it.score}
+
+        scoreListAdapter = RecyclerAdapter(scoreList)
+        scoreRecycler?.adapter = scoreListAdapter
+        for (i in scoreList) {
+            when (i.trophy) {
+
+                TrophyEnum.BRONZE -> i.trophySource = R.drawable.trophybronze
+
+                TrophyEnum.SILVER -> i.trophySource = R.drawable.trophysilver
+
+                TrophyEnum.GOLD -> i.trophySource = R.drawable.trophygold
+
+                TrophyEnum.DIAMOND -> i.trophySource = R.drawable.trophydiamond
+
+                else -> i.trophySource = 0
+            }
+        }
     }
+
 }

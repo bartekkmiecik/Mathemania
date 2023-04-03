@@ -8,8 +8,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.mathemania.Constants.getRandomEquation
-import com.google.android.material.color.utilities.Score
-
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.lang.reflect.Type
@@ -36,7 +34,6 @@ class MainActivity : AppCompatActivity() {
         buttonStart.setOnClickListener {
             if(inputName.text.isEmpty()) {
                 Toast.makeText(this, "Please enter your name", Toast.LENGTH_SHORT).show()
-                println(getRandomEquation())
             } else {
                 val intent = Intent(this, QuestionsActivity::class.java)
                 intent.putExtra(Constants.USER_NAME, inputName.text.toString())
@@ -65,8 +62,10 @@ class MainActivity : AppCompatActivity() {
         val sharedPreferences = getSharedPreferences("best score", MODE_PRIVATE)
         val gson = Gson()
         val json = sharedPreferences.getString("courses", null)
-        val type: Type = object : TypeToken<ArrayList<BestScore?>?>() {}.type
-        listBestScore = gson.fromJson<Any>(json, type) as ArrayList<BestScore>
+        if (json != null) {
+            val type: Type = object : TypeToken<ArrayList<BestScore?>?>() {}.type
+            listBestScore = gson.fromJson<Any>(json, type) as ArrayList<BestScore>
+        }
     }
 
     private fun addBestScoresToList(bestScore: BestScore) {
@@ -74,7 +73,6 @@ class MainActivity : AppCompatActivity() {
             if (bestScore.score > listBestScore[0].score) {
                 listBestScore.removeAt(0)
                 listBestScore.add(bestScore)
-                listBestScore.sortBy { it.score }
             }
         } else {
             listBestScore.add(bestScore)

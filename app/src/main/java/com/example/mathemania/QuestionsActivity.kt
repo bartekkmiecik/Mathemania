@@ -75,9 +75,6 @@ class QuestionsActivity : AppCompatActivity() {
 
             checkCorrectAnswer(it, correctAnswerString)
         }
-
-
-        println("${textAnswer?.text}, $correctAnswer")
     }
 
     private fun appendButtonTapped(button: View) {
@@ -101,7 +98,6 @@ class QuestionsActivity : AppCompatActivity() {
             isOperatorAdded = false
             correctAnswerCount++
             textAnswerCount?.text = "Correct answers: $correctAnswerCount"
-            println(correctAnswerCount)
             countDownTimer.start()
         }
     }
