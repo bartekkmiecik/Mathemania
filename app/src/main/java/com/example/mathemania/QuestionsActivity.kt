@@ -45,7 +45,7 @@ class QuestionsActivity : AppCompatActivity() {
     private fun setCountDownTimer(intent: Intent) {
         countDownTimer = object: CountDownTimer(5000, 5) {
             override fun onTick(remainingTime: Long) {
-                textTimer?.text = remainingTime.toString()
+                textTimer?.text = (remainingTime / 100).toString()
             }
 
             override fun onFinish() {
