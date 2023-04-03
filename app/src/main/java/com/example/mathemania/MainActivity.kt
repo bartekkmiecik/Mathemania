@@ -77,13 +77,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun addBestScoreToList(bestScore: BestScore) {
-        if (bestScores.size > 4){
+        if (bestScores.size >= 5){
             if (bestScore.score > bestScores[4].score) {
                 bestScores.removeAt(4)
                 bestScores.add(bestScore)
+                println("done")
             }
         } else {
             bestScores.add(bestScore)
         }
+        bestScores.sortByDescending{ it.score }
     }
 }

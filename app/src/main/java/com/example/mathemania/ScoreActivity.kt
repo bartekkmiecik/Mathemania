@@ -25,8 +25,6 @@ class ScoreActivity : AppCompatActivity() {
         scoreRecycler?.layoutManager = linearLayoutManager
 
 
-        scoreList.sortByDescending{ it.score }
-
         scoreListAdapter = RecyclerAdapter(scoreList)
         scoreRecycler?.adapter = scoreListAdapter
 
