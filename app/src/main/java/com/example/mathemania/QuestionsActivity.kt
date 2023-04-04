@@ -26,6 +26,7 @@ class QuestionsActivity : AppCompatActivity() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_questions)
+        Constants.hideSystemUI(window)
 
         username = intent.getStringExtra(Constants.USER_NAME)
         textAnswer = findViewById(R.id.textAnswer)

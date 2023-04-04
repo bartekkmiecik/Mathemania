@@ -2,6 +2,7 @@ package com.example.mathemania
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -13,7 +14,7 @@ import java.lang.reflect.Type
 
 
 class MainActivity : AppCompatActivity() {
-    private var bestScores = ArrayList<BestScore>()
+    private var bestScores = ArrayList<BestScore>(5)
     override fun onCreate(savedInstanceState: Bundle?) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         super.onCreate(savedInstanceState)
@@ -22,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         val buttonScore: Button = findViewById(R.id.buttonScore)
         val inputName: EditText = findViewById(R.id.inputName)
         val isProgressReadyToSave = intent.getBooleanExtra(Constants.IS_READY_TO_SAVE, false)
-
+        Constants.hideSystemUI(window)
         loadData()
 
         if (isProgressReadyToSave) {
@@ -86,6 +87,6 @@ class MainActivity : AppCompatActivity() {
         } else {
             bestScores.add(bestScore)
         }
-        bestScores.sortByDescending{ it.score }
+        bestScores.sortedByDescending { it.score }
     }
 }

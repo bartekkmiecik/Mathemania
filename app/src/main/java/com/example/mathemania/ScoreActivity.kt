@@ -15,6 +15,7 @@ class ScoreActivity : AppCompatActivity() {
         setContentView(R.layout.activity_score)
         val scoreList = intent.getSerializableExtra(Constants.BEST_SCORE) as ArrayList<BestScore>
         scoreRecycler = findViewById(R.id.bestScoreList)
+        Constants.hideSystemUI(window)
 
         val linearLayoutManager = object : LinearLayoutManager(this) {
             override fun canScrollVertically(): Boolean {

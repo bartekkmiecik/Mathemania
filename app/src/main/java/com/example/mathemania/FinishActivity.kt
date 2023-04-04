@@ -24,6 +24,7 @@ class FinishActivity : AppCompatActivity() {
         val correctAnswers = intent.getIntExtra(Constants.CORRECT_ANSWERS, 0)
         val playerUsername = intent.getStringExtra(Constants.USER_NAME).toString()
         val isProgressReadyToSave = true
+        Constants.hideSystemUI(window)
 
         imageTrophy = findViewById(R.id.imageTrophy)
 
@@ -56,7 +57,7 @@ class FinishActivity : AppCompatActivity() {
                 trophy = TrophyType.GOLD
             }
 
-            score >= 25 -> {
+            score == 25 -> {
                 imageTrophy?.setImageResource(R.drawable.trophysilver)
                 trophy = TrophyType.SILVER
             }
