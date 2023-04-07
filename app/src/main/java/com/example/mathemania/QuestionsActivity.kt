@@ -26,6 +26,7 @@ class QuestionsActivity : AppCompatActivity() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_questions)
+        Constants.hideSystemUI(window)
 
         username = intent.getStringExtra(Constants.USER_NAME)
         textAnswer = findViewById(R.id.textAnswer)
@@ -45,7 +46,7 @@ class QuestionsActivity : AppCompatActivity() {
     private fun setCountDownTimer(intent: Intent) {
         countDownTimer = object: CountDownTimer(5000, 5) {
             override fun onTick(remainingTime: Long) {
-                textTimer?.text = remainingTime.toString()
+                textTimer?.text = (remainingTime / 100).toString()
             }
 
             override fun onFinish() {
@@ -75,9 +76,6 @@ class QuestionsActivity : AppCompatActivity() {
 
             checkCorrectAnswer(it, correctAnswerString)
         }
-
-
-        println("${textAnswer?.text}, $correctAnswer")
     }
 
     private fun appendButtonTapped(button: View) {
@@ -101,7 +99,6 @@ class QuestionsActivity : AppCompatActivity() {
             isOperatorAdded = false
             correctAnswerCount++
             textAnswerCount?.text = "Correct answers: $correctAnswerCount"
-            println(correctAnswerCount)
             countDownTimer.start()
         }
     }
