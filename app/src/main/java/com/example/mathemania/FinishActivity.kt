@@ -23,7 +23,7 @@ class FinishActivity : AppCompatActivity() {
         val buttonFinish: Button = findViewById(R.id.buttonFinish)
         val correctAnswers = intent.getIntExtra(Constants.CORRECT_ANSWERS, 0)
         val playerUsername = intent.getStringExtra(Constants.USER_NAME).toString()
-        val isProgressReadyToSave = true
+        val isGameEnded = true
         Constants.hideSystemUI(window)
 
         imageTrophy = findViewById(R.id.imageTrophy)
@@ -37,7 +37,7 @@ class FinishActivity : AppCompatActivity() {
 
         buttonFinish.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra(Constants.IS_READY_TO_SAVE, isProgressReadyToSave)
+            intent.putExtra(Constants.IS_GAME_ENDED, isGameEnded)
             intent.putExtra(Constants.BEST_SCORE, userScore)
             startActivity(intent)
             finish()

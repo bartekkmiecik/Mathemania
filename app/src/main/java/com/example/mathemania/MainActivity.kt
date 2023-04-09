@@ -22,12 +22,14 @@ class MainActivity : AppCompatActivity() {
         val buttonStart: Button = findViewById(R.id.buttonStart)
         val buttonScore: Button = findViewById(R.id.buttonScore)
         val inputName: EditText = findViewById(R.id.inputName)
-        val isProgressReadyToSave = intent.getBooleanExtra(Constants.IS_READY_TO_SAVE, false)
+        val isGameEnded = intent.getBooleanExtra(Constants.IS_GAME_ENDED, false)
         Constants.hideSystemUI(window)
         loadData()
 
-        if (isProgressReadyToSave) {
-            addBestScoreToList(intent.getSerializableExtra(Constants.BEST_SCORE) as BestScore)
+        if (isGameEnded) {
+            val bestScore = intent.getSerializableExtra(Constants.BEST_SCORE) as BestScore
+            inputName.setText(bestScore.username)
+            addBestScoreToList(bestScore)
             saveData()
         }
 
@@ -78,7 +80,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun addBestScoreToList(bestScore: BestScore) {
-        if (bestScores.size >= 5){
+        val bestUsernameScore = bestScores.find { it.username == bestScore.username }
+        if (bestUsernameScore?.username == bestScore.username ) {
+            if(bestUsernameScore.score < bestScore.score) {
+                bestScores.removeIf { it.username == bestScore.username }
+            }
+        }
+        if (bestScores.size >= 5) {
             if (bestScore.score > bestScores[4].score) {
                 bestScores.removeAt(4)
                 bestScores.add(bestScore)
@@ -87,6 +95,6 @@ class MainActivity : AppCompatActivity() {
         } else {
             bestScores.add(bestScore)
         }
-        bestScores.sortedByDescending { it.score }
+        bestScores.sortByDescending { it.score }
     }
 }
