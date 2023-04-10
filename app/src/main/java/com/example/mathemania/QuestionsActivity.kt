@@ -21,7 +21,9 @@ class QuestionsActivity : AppCompatActivity() {
     private var correctAnswer: Double = 0.0
     private var correctAnswerCount = 0
     private var username: String? = null
+    var isCountdownFinished = false
     private lateinit var countDownTimer : CountDownTimer
+
     override fun onCreate(savedInstanceState: Bundle?) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         super.onCreate(savedInstanceState)
@@ -34,6 +36,7 @@ class QuestionsActivity : AppCompatActivity() {
         textAnswerCount = findViewById(R.id.textAnswerCount)
         textTimer = findViewById(R.id.textTimer)
         val intent = Intent(this, FinishActivity::class.java)
+
 
         setEquation()
 
@@ -50,10 +53,10 @@ class QuestionsActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                intent.putExtra(Constants.USER_NAME, username)
-                intent.putExtra(Constants.CORRECT_ANSWERS, correctAnswerCount)
-                startActivity(intent)
-                finish()
+                if(isCountdownFinished) {
+                    changeActivities(intent)
+                }
+                isCountdownFinished = true
             }
         }
         countDownTimer.start()
@@ -155,4 +158,10 @@ class QuestionsActivity : AppCompatActivity() {
         }
     }
 
+    private fun changeActivities(intent: Intent) {
+        intent.putExtra(Constants.USER_NAME, username)
+        intent.putExtra(Constants.CORRECT_ANSWERS, correctAnswerCount)
+        startActivity(intent)
+        finish()
+    }
 }
