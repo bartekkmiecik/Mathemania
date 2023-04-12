@@ -21,7 +21,6 @@ class QuestionsActivity : AppCompatActivity() {
     private var correctAnswer: Double = 0.0
     private var correctAnswerCount = 0
     private var username: String? = null
-    var isCountdownFinished = false
     private lateinit var countDownTimer : CountDownTimer
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,7 +41,6 @@ class QuestionsActivity : AppCompatActivity() {
 
         setCountDownTimer(intent)
 
-        countDownTimer.start()
 
     }
 
@@ -53,10 +51,7 @@ class QuestionsActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                if(isCountdownFinished) {
-                    changeActivities(intent)
-                }
-                isCountdownFinished = true
+                changeActivities(intent)
             }
         }
         countDownTimer.start()
